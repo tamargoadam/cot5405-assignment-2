@@ -1,7 +1,6 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <time.h>
 #include <sys/time.h> 
 
 using namespace std;
