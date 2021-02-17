@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 {
     if (argc < 2) {
         cout << "Please input array of integers.\n";
-        return 0;
+        return -1;
     }
     
     int* data  = (int*)calloc( argc-1, sizeof(int));
