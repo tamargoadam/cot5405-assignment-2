@@ -1,7 +1,8 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <sys/time.h> 
+#include <sys/time.h>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
@@ -186,28 +187,34 @@ int main(int argc, char const *argv[])
     int num_buildings;
     sscanf(argv[1], "%d", &num_buildings);
 
-    buildings* b = generate_random_buildings(num_buildings);
-    if (num_buildings < 1000) {
-        cout << "Randomly generated buildings:\n";
-        b->print();
-    } else {
-        cout << num_buildings << " buildings have been randomly generated.\n";
+    long double sum = 0;
+
+    for (int i=0; i<3; i++) {
+        buildings* b = generate_random_buildings(num_buildings);
+        if (num_buildings < 1000) {
+            cout << "Randomly generated buildings:\n";
+            b->print();
+        } else {
+            cout << num_buildings << " buildings have been randomly generated.\n";
+        }
+
+        struct timeval t1, t2;
+        long double time_elapsed;
+        gettimeofday(&t1, NULL);
+
+        // find skyling for buildings in b
+        skyline* s = get_skyline(b->building_list, 0, b->size-1);
+
+        gettimeofday(&t2, NULL);
+        time_elapsed = (long double)(t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
+        time_elapsed += (long double)(t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
+
+        sum += time_elapsed;
+    
+        cout << "Resulting skyline:\n";
+        s->print();
+        cout << "CPU time to find skyline: " << fixed << time_elapsed << setprecision(6) << " ms\n";
     }
-
-    struct timeval t1, t2;
-    double time_elapsed;
-    gettimeofday(&t1, NULL);
-
-    // find skyling for buildings in b
-    skyline* s = get_skyline(b->building_list, 0, b->size-1);
-
-    gettimeofday(&t2, NULL);
-    time_elapsed = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
-    time_elapsed += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
-
-    cout << "Resulting skyline:\n";
-    s->print();
-    cout << "CPU time to find skyline: " << time_elapsed << " ms\n";
-
+    cout << "Avg. CPU time to find skyline: " << sum/3 << " ms\n";
     return 0;
 }
