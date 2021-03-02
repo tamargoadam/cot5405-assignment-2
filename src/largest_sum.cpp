@@ -1,13 +1,14 @@
 #include <iostream>
 #include <algorithm>
+#include <cstdint>
 
 using namespace std;
 
 int largest_sum(int nums[], int l, int r) {
     int mid = (l+r)/2;
     int sum = 0;
-    int sum_l = INT_MIN;
-    int sum_r = INT_MIN;
+    int sum_l = INT32_MIN;
+    int sum_r = INT32_MIN;
     
     if (l-r == 0)
         return nums[l];
