@@ -1,5 +1,13 @@
 # Divide and Conquer
 
+## Usage
+To build the program, move into the `src` folder and run `make`. This will build two applications: largest_sum and city_skyline.
+
+`./city_skyline <num_buildings>` allows the user to run the "City Skyline" algorithm with the specified number of randomly generated buildings as input.
+
+`./largest_sum <value_1> <value_2> … <value_3>` allows the user to run the "Largest Consecutive Sum" algorithm with the specified integer array as input.
+
+
 ### City Skyline
 Find the city skyline provided a list of building coordinates.
 
@@ -11,6 +19,9 @@ In order to generate a city skyline, provided a list of building coordinates sor
 
 Running three trials for five increasingly large input quantities, the average CPU time to find the city skyline for datasets of each size was found. The trend, as seen on the table and graph below, illustrates the O(n log(n)) runtime for this algorithm. The graph plots our average CPU time to complete the algorithm for each size input alongside the graph of n log(n) multiplied by a constant factor (10^-4).
 
+![runtime table](https://github.com/tamargoadam/divide-and-conquer/blob/main/imgs/city_skyline_complexity_table.png)
+
+![complexity graph](https://github.com/tamargoadam/divide-and-conquer/blob/main/imgs/city_skyline_complexity_graph.png)
 
 ### Largest Consecutive Sum
 Find the largest possible sum of sub-sequence of consecutive items in a list.
